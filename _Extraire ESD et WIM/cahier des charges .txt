@@ -1,0 +1,61 @@
+**Cahier des charges : Script PowerShell ESD-WIM Extractor**
+
+**Contexte :**  
+Le script PowerShell « ESD-WIM-Extractor-Complete.ps1 » est développé pour simplifier l'extraction d'indices d'images à partir de fichiers ESD et WIM. Ce script offre un menu interactif permettant aux utilisateurs de choisir d'extraire des indices spécifiques ou tous les indices de plusieurs fichiers. Le script est conçu pour être utilisé par des techniciens ayant des privilèges administratifs sur leur système.
+
+**Objectif :**  
+L'objectif est de permettre une gestion facile et rapide des fichiers ESD et WIM pour l'extraction d'indices spécifiques, tout en assurant une flexibilité pour traiter tous les fichiers présents dans un dossier donné. Ce script permet à l'utilisateur de naviguer dans un menu simple, d'exécuter des commandes DISM et de créer les dossiers nécessaires automatiquement si ceux-ci n'existent pas.
+
+**Fonctionnalités principales :**
+
+1. **Menu interactif :**  
+   - Le script propose un menu principal avec trois options : à savoir l'extraction d'un index spécifique, l'extraction de tous les indices de fichiers présents dans le dossier, ou la sortie du programme.
+
+2. **Gestion des dossiers :**  
+   - Les dossiers « DEPOT » et « FINAL » sont créés automatiquement au démarrage du script s'ils n'existent pas.
+   - Le dossier « DEPOT » est l'endroit où les fichiers ESD et WIM doivent être placés par l'utilisateur. Le dossier « FINAL » est l'endroit où les fichiers extraits seront enregistrés.
+
+3. **Extraction des indices :**
+   - **Extraction d'un index spécifique :** L'utilisateur peut choisir un fichier ESD ou WIM parmi ceux présents dans le dossier « DEPOT » et sélectionner l'index à extraire.
+   - **Extraction de tous les indices :** Tous les indices présents dans tous les fichiers du dossier « DEPOT » sont extraits vers le dossier « FINAL ».
+
+4. **Utilisation des commandes DISM :**
+   - Le script exécute les commandes DISM nécessaires pour extraire les indices des fichiers ESD/WIM avec les arguments appropriés (à l'aide de la commande « Start-Process »).
+   - Les arguments DISM incluent l'exportation de l'image, l'écriture des fichiers extraits avec un nom basé sur le nom de l'index.
+
+5. **Affichage et UX :**
+   - Utilisation de couleurs différentes (« Cyan », « Green », « Yellow », « Red », etc.) pour améliorer l'expérience utilisateur.
+   - Des messages d'avertissement, d'information, et des détails sur les processus en cours sont affichés à chaque étape pour assurer une meilleure compréhension par l'utilisateur.
+   - L'utilisateur est guidé dans la sélection des fichiers, le choix des indices à extraire, et informé des étapes effectuées.
+
+6. **Vérification initiale des fichiers :**
+   - Avant de lancer le menu principal, le script vérifie la présence de fichiers ESD/WIM dans le dossier « DEPOT » et affiche le nombre de fichiers trouvés.
+
+**Prérequis :**
+- Le script doit être exécuté avec des privilèges administratifs (à l'aide de `#requires -RunAsAdministrator`).
+- PowerShell version 5.1 ou ultérieure (à l'aide de `#requires -Version 5.1`).
+- Les fichiers ESD/WIM doivent être placés dans le dossier « DEPOT ».
+
+**Spécifications techniques :**
+- **Langage :** PowerShell (version 5.1 ou supérieure).
+- **Outils utilisés :** DISM pour l'extraction des images.
+- **Structure du script :** Le script est composé de plusieurs fonctions pour organiser les différentes opérations (« Write-ColoredOutput », « Initialize-Directory », « Show-Menu », etc.).
+- **Retour utilisateur :** Les messages et états des processus sont affichés via la fonction « Write-ColoredOutput » avec des codes couleur pour une meilleure lisibilité.
+
+**Améliorations possibles :**
+- **Journalisation :** Ajouter une fonctionnalité de journalisation des actions effectuées dans un fichier log, pour faciliter le débogage.
+- **Interface graphique :** Intégrer une interface graphique (GUI) simple pour permettre une interaction plus intuitive.
+- **Validation avancée :** Ajouter des vérifications supplémentaires pour valider la validité des fichiers d'entrée et des indices choisis.
+
+**Références :**  
+- **DISM (Deployment Image Servicing and Management)** : Utilisé pour la gestion des images Windows.
+- **PowerShell Documentation** : Microsoft Learn PowerShell pour les informations de base sur les commandes.
+
+**Livrables :**
+- Script PowerShell complet (nommé : « ESD-WIM-Extractor-Complete.ps1 »).
+- Documentation d'utilisation pour les utilisateurs finaux (comprenant les étapes précises d'exécution et les prérequis).
+- Dossier compressé contenant le script et tous les fichiers annexes (le cas échéant).
+
+**Contact :**  
+Pour toute question ou clarification sur le développement, veuillez contacter [Nom du responsable].
+
